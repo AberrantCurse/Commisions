@@ -1,19 +1,6 @@
 <html>
 <link rel="stylesheet" href="Style.css">
 <script>
-  const baseRequest = {
-  apiVersion: 2,
-  apiVersionMinor: 0
-};
-const tokenizationSpecification = {
-  type: 'PAYMENT_GATEWAY',
-  parameters: {
-    'gateway': 'example',
-    'gatewayMerchantId': 'exampleGatewayMerchantId'
-  }
-};
-</script>
-<script>
   function mail(){
     var formData = new FormData(document.querySelector('form'));
     if (window.XMLHttpRequest){
@@ -21,7 +8,7 @@ const tokenizationSpecification = {
       }else{ 
         xmlhttpp=new ActiveXObject("Microsoft.XMLHTTP");
        }
-    xmlhttpp.open("GET", "mail.php?q=" + formData);
+    xmlhttpp.open("GET", "mail.php");
     xmlhttpp.send();
     console.log("egg");
   }
