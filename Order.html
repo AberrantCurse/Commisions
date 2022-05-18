@@ -1,0 +1,86 @@
+<html>
+<link rel="stylesheet" href="Style.css">
+<script>
+  const baseRequest = {
+  apiVersion: 2,
+  apiVersionMinor: 0
+};
+const tokenizationSpecification = {
+  type: 'PAYMENT_GATEWAY',
+  parameters: {
+    'gateway': 'example',
+    'gatewayMerchantId': 'exampleGatewayMerchantId'
+  }
+};
+</script>
+<script>
+  function mail(){
+    var formData = new FormData(document.querySelector('form'));
+    if (window.XMLHttpRequest){
+       xmlhttpp=new XMLHttpRequest(); 
+      }else{ 
+        xmlhttpp=new ActiveXObject("Microsoft.XMLHTTP");
+       }
+    xmlhttpp.open("GET", "mail.php?q=" + formData);
+    xmlhttpp.send();
+    console.log("egg");
+  }
+</script>
+<div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="Order.html" style="background:red; box-shadow: 0px 0px 10px rgba(255,0,0, 1);">Order</a>
+    <a class="active" href="PortFolio.html">Portfolio</a>
+ </div>
+ <form method="post" name="myemailform" action="" id="myForm">
+  <input type="checkbox" id="button"style="display: none;"/>
+  <label for="button" onclick="checkValue()">
+   <select class="custom-select" name="OrderType" id="Type" label="option type">
+     <optgroup label="Full Artwork">
+       <option value="Envi">Enviroment</option>
+       <option value="Char">Character</option>
+       <option value="Envi+Char">Enviroment + Character</option>
+     </optgroup>
+     <optgroup label="Texture">
+       <option value="1k texture">1k</option>
+       <option value="2k texture">2k</option>
+       <option value="4k texture">4k</option>
+       <option value="8k texture">8k</option>
+     </optgroup>
+   </select>
+  </label>
+  <select class="custom-select" name="Types" id="NumTex" label="option type" style="top: 110; display: none; height: 10%; overflow-y: auto;" multiple>
+     <option value="Albedo">Albedo</option>
+     <option value="Roughness">Rougness</option>
+     <option value="Metalic">Metalic</option>
+     <option value="Normal">Normal</option>
+ </select>
+ <textarea class="center" name="Message" id="Message" rows="4" cols="50" style="resize:none; top:50%"></textarea>
+ <input type="submit" value="SUBMIT" class="Center" id="Submit" style="top: 70%;" onclick="mail()">
+ </form>
+ <script>
+  function checkValue(){
+  var e = document.getElementById("Type");
+  var Option = e.selectedIndex;
+  if(Option > 2){
+  var text = document.text;
+  document.getElementById("NumTex").style.display = "inline-block";
+  }else{
+    document.getElementById("NumTex").style.display = "None";
+  }
+}
+checkValue();
+var form = document.getElementById("myForm");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+window.onmousedown = function (e) {
+    var el = e.target;
+    if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
+        e.preventDefault();
+        if (el.hasAttribute('selected')) el.removeAttribute('selected');
+        else el.setAttribute('selected', '');
+        var select = el.parentNode.cloneNode(true);
+        el.parentNode.parentNode.replaceChild(select, el.parentNode);
+    }
+}
+</script>
+</html>
